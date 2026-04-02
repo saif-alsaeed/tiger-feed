@@ -4,386 +4,1670 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أعلاف تايجر | الخيار الأول لمزارع الدواجن في مصر</title>
-    <meta name="description" content="أعلاف تايجر توفر لك أفضل أنواع أعلاف الدواجن في مصر. بادي، نامي، وناهي بأعلى معدلات التحويل الغذائي. اتصل بنا الآن للطلبات بالجملة.">
-    
-    <!-- Tailwind CSS (Mobile-first framework) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Cairo for modern Arabic typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="أعلاف تايجر توفر لك أفضل أنواع أعلاف الدواجن في مصر. بادي، نامي، وناهي بأعلى معدلات التحويل الغذائي.">
 
-    <!-- Tailwind Config for Brand Colors & Font -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        tiger: {
-                            orange: '#F97316', // Vibrant Orange
-                            dark: '#1F2937',   // Dark Gray/Black
-                            light: '#F3F4F6'   // Light Gray for backgrounds
-                        },
-                        whatsapp: '#25D366'
-                    },
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Bootstrap 5 RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+
+    <!-- AOS Animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- Google Fonts: Tajawal (Arabic) -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
-        body { font-family: 'Cairo', sans-serif; }
-        /* Smooth scrolling for anchor links */
-        html { scroll-behavior: smooth; }
-        /* Floating WhatsApp Button Animation */
-        @keyframes pulse-wa {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        /* =========================================
+           CSS VARIABLES & ROOT
+        ========================================= */
+        :root {
+            --green-deep:    #1A3A2A;
+            --green-mid:     #2D6A4F;
+            --green-light:   #52B788;
+            --green-pale:    #D8F3DC;
+            --cream:         #F7F3EC;
+            --cream-dark:    #EDE8DE;
+            --gold:          #B8860B;
+            --gold-light:    #D4A843;
+            --charcoal:      #1C1C1E;
+            --charcoal-soft: #3A3A3C;
+            --white:         #FFFFFF;
+            --text-muted:    #6B7280;
+            --whatsapp:      #25D366;
+            --shadow-sm:     0 2px 12px rgba(0,0,0,0.07);
+            --shadow-md:     0 6px 28px rgba(0,0,0,0.11);
+            --shadow-lg:     0 16px 48px rgba(0,0,0,0.14);
+            --radius:        14px;
+            --radius-lg:     22px;
         }
-        .wa-float { animation: pulse-wa 2s infinite; }
+
+        /* =========================================
+           GLOBAL RESET & BASE
+        ========================================= */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--white);
+            color: var(--charcoal);
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 { font-family: 'Tajawal', sans-serif; font-weight: 800; line-height: 1.3; }
+        p { color: var(--text-muted); font-size: 1.05rem; }
+
+        section { overflow: hidden; }
+
+        /* Utility */
+        .text-green  { color: var(--green-mid) !important; }
+        .text-gold   { color: var(--gold-light) !important; }
+        .bg-cream    { background-color: var(--cream); }
+        .bg-deep     { background-color: var(--green-deep); }
+
+        /* Section heading accent line */
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--green-mid);
+            background: var(--green-pale);
+            padding: 5px 16px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            color: var(--charcoal);
+            margin-bottom: 14px;
+        }
+        .section-line {
+            width: 52px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--green-mid), var(--gold-light));
+            border-radius: 4px;
+            margin: 0 auto 20px;
+        }
+        .section-line.start { margin: 0 0 20px; }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+        #mainNav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 0;
+            transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+            background: transparent;
+        }
+        #mainNav.scrolled {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav-brand img {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--green-light);
+        }
+        .nav-brand-text {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--white);
+            transition: color 0.3s;
+        }
+        #mainNav.scrolled .nav-brand-text { color: var(--charcoal); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+        #mainNav.scrolled .nav-links a { color: var(--charcoal-soft); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px; right: 0;
+            width: 0; height: 2px;
+            background: var(--green-mid);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--green-light); }
+        #mainNav.scrolled .nav-links a:hover { color: var(--green-mid); }
+
+        .btn-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: var(--whatsapp);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+        }
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(37,211,102,0.45);
+            background: #1da851;
+        }
+
+        /* Hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            background: none; border: none;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 26px; height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+        #mainNav.scrolled .nav-toggle span { background: var(--charcoal); }
+
+        /* Mobile drawer */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--green-deep);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .mobile-menu a:hover { color: var(--gold-light); }
+        .close-menu {
+            position: absolute;
+            top: 28px; left: 28px;
+            background: none; border: none;
+            color: white; font-size: 2rem; cursor: pointer;
+        }
+
+
+        /* =========================================
+           HERO SECTION
+        ========================================= */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1598287515937-25257e930113?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                rgba(26,58,42,0.92) 0%,
+                rgba(26,58,42,0.78) 50%,
+                rgba(45,106,79,0.65) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            backdrop-filter: blur(6px);
+            color: white;
+            padding: 7px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 28px;
+            letter-spacing: 0.05em;
+        }
+        .hero-badge i { color: var(--gold-light); }
+        .hero-title {
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            font-weight: 900;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 22px;
+        }
+        .hero-title span { color: var(--gold-light); }
+        .hero-sub {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.82);
+            max-width: 580px;
+            margin-bottom: 40px;
+        }
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        /* Buttons */
+        .btn-primary-green {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--green-mid);
+            color: white;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid var(--green-mid);
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(45,106,79,0.4);
+        }
+        .btn-primary-green:hover {
+            background: var(--green-deep);
+            border-color: var(--green-deep);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(45,106,79,0.5);
+        }
+        .btn-outline-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: transparent;
+            color: white;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+        .btn-outline-white:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: white;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .btn-wa {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--whatsapp);
+            color: white;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid var(--whatsapp);
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.35);
+        }
+        .btn-wa:hover {
+            background: #1da851;
+            border-color: #1da851;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37,211,102,0.5);
+        }
+        .btn-outline-green {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 28px;
+            background: transparent;
+            color: var(--green-mid);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: 2px solid var(--green-mid);
+            transition: all 0.3s ease;
+        }
+        .btn-outline-green:hover {
+            background: var(--green-mid);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Hero stats strip */
+        .hero-stats {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            z-index: 3;
+            padding: 28px 0;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+        .hero-stat-item {
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            border-left: 1px solid rgba(255,255,255,0.2);
+        }
+        .hero-stat-item:last-child { border-left: none; }
+        .hero-stat-num {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--gold-light);
+            display: block;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .hero-stat-label { font-size: 0.82rem; opacity: 0.8; font-weight: 500; }
+
+
+        /* =========================================
+           FEATURES BAND
+        ========================================= */
+        #features-band {
+            background: var(--green-deep);
+            padding: 60px 0;
+        }
+        .feat-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 8px 0;
+        }
+        .feat-icon {
+            width: 52px; height: 52px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            transition: background 0.3s;
+        }
+        .feat-card:hover .feat-icon { background: var(--green-mid); }
+        .feat-card h5 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+        .feat-card p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.65);
+            margin: 0;
+        }
+
+
+        /* =========================================
+           ABOUT SECTION
+        ========================================= */
+        #about { padding: 110px 0; background: var(--cream); }
+        .about-img-wrap {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        .about-img-wrap img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            display: block;
+        }
+        .about-img-badge {
+            position: absolute;
+            bottom: 28px;
+            left: 28px;
+            background: var(--green-deep);
+            color: white;
+            padding: 16px 22px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+        }
+        .about-img-badge strong {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--gold-light);
+            display: block;
+            line-height: 1;
+        }
+        .about-img-badge span { font-size: 0.82rem; opacity: 0.8; }
+
+        .about-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 14px;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .about-check:hover { transform: translateX(-4px); box-shadow: var(--shadow-md); }
+        .about-check-icon {
+            width: 36px; height: 36px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--green-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-mid);
+            font-size: 0.95rem;
+        }
+        .about-check h6 { font-size: 0.95rem; font-weight: 700; color: var(--charcoal); margin: 0 0 2px; }
+        .about-check p { font-size: 0.83rem; color: var(--text-muted); margin: 0; }
+
+
+        /* =========================================
+           PRODUCTS / SERVICES SECTION
+        ========================================= */
+        #products { padding: 110px 0; background: white; }
+
+        .product-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: white;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #E8EDE9;
+            transition: transform 0.32s ease, box-shadow 0.32s ease;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-card-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        .product-card-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .product-card:hover .product-card-img img { transform: scale(1.06); }
+        .product-card-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,58,42,0.7) 0%, transparent 55%);
+        }
+        .product-badge-top {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: #DC2626;
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            z-index: 2;
+        }
+        .product-protein {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            z-index: 2;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .product-protein span { font-size: 0.9rem; font-weight: 500; opacity: 0.85; display: block; }
+
+        .product-card-body { padding: 26px 26px 30px; }
+        .product-card-body h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--charcoal);
+            margin-bottom: 6px;
+        }
+        .product-age-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--green-mid);
+            background: var(--green-pale);
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 18px;
+        }
+        .product-features { list-style: none; padding: 0; margin: 0 0 24px; }
+        .product-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--charcoal-soft);
+            padding: 6px 0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+        .product-features li:last-child { border-bottom: none; }
+        .product-features i { color: var(--green-mid); font-size: 0.8rem; }
+
+
+        /* =========================================
+           WHY CHOOSE US
+        ========================================= */
+        #why { padding: 110px 0; background: var(--cream); }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .why-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #E8EDE9;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(180deg, var(--green-mid), var(--gold-light));
+            border-radius: 0 var(--radius) var(--radius) 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .why-card:hover::before { opacity: 1; }
+        .why-card-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: var(--green-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--green-mid);
+            margin-bottom: 16px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .why-card:hover .why-card-icon { background: var(--green-mid); color: white; }
+        .why-card h5 { font-size: 1rem; font-weight: 700; color: var(--charcoal); margin-bottom: 8px; }
+        .why-card p { font-size: 0.88rem; color: var(--text-muted); margin: 0; }
+
+        .why-right-image {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 100%;
+            min-height: 400px;
+            position: relative;
+        }
+        .why-right-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .why-right-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,58,42,0.85) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 32px;
+        }
+        .why-quote {
+            color: white;
+            font-size: 1.15rem;
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1.5;
+        }
+        .why-quote small {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--gold-light);
+            font-style: normal;
+        }
+
+
+        /* =========================================
+           TESTIMONIALS
+        ========================================= */
+        #testimonials { padding: 110px 0; background: white; }
+
+        .review-card {
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            position: relative;
+            border: 1px solid var(--cream-dark);
+            transition: all 0.3s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            background: white;
+        }
+        .review-quote-icon {
+            font-size: 3rem;
+            color: var(--green-pale);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        .review-text {
+            font-size: 0.97rem;
+            color: var(--charcoal-soft);
+            font-style: italic;
+            margin-bottom: 24px;
+            line-height: 1.75;
+        }
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .review-avatar {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: var(--green-mid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .review-name { font-weight: 700; font-size: 0.95rem; color: var(--charcoal); margin: 0; }
+        .review-role { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+        .stars { color: var(--gold); font-size: 0.85rem; margin-top: 6px; }
+
+
+        /* =========================================
+           INSTAGRAM / GALLERY
+        ========================================= */
+        #gallery { padding: 90px 0; background: var(--green-deep); }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(26,58,42,0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+        .gallery-item-overlay i { font-size: 1.6rem; color: white; }
+
+
+        /* =========================================
+           CTA BANNER
+        ========================================= */
+        #cta {
+            padding: 100px 0;
+            background:
+                linear-gradient(135deg, rgba(26,58,42,0.97) 0%, rgba(45,106,79,0.95) 100%),
+                url('https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            text-align: center;
+        }
+        .cta-title {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 18px;
+            line-height: 1.2;
+        }
+        .cta-title span { color: var(--gold-light); }
+        .cta-sub {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.78);
+            max-width: 560px;
+            margin: 0 auto 42px;
+        }
+        .cta-note {
+            margin-top: 20px;
+            color: rgba(255,255,255,0.55);
+            font-size: 0.85rem;
+        }
+
+
+        /* =========================================
+           CONTACT / FOOTER
+        ========================================= */
+        #contact { padding: 110px 0 60px; background: var(--charcoal); }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+        .contact-info-icon {
+            width: 46px; height: 46px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .contact-info-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); font-weight: 500; margin-bottom: 2px; }
+        .contact-info-val { color: rgba(255,255,255,0.9); font-size: 0.95rem; font-weight: 600; }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+        .social-link:hover {
+            background: var(--green-mid);
+            color: white;
+            transform: translateY(-3px);
+            border-color: var(--green-mid);
+        }
+
+        .footer-map {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-quick-link {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .footer-quick-link:hover { color: var(--gold-light); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: 60px;
+            padding-top: 28px;
+            text-align: center;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.85rem;
+        }
+
+
+        /* =========================================
+           FLOATING WHATSAPP BUTTON
+        ========================================= */
+        .wa-float-btn {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            width: 62px; height: 62px;
+            border-radius: 50%;
+            background: var(--whatsapp);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+            z-index: 900;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .wa-float-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 36px rgba(37,211,102,0.6);
+            color: white;
+        }
+        @keyframes pulse-ring {
+            0%   { box-shadow: 0 0 0 0   rgba(37,211,102,0.6); }
+            70%  { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
+            100% { box-shadow: 0 0 0 0   rgba(37,211,102,0); }
+        }
+        .wa-float-btn { animation: pulse-ring 2.5s infinite; }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+        @media (max-width: 991.98px) {
+            .nav-links, .btn-nav { display: none !important; }
+            .nav-toggle { display: flex; }
+            .hero-stats .col-md-3 { margin-bottom: 12px; }
+            .hero-stat-item { border-left: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 12px; }
+            .hero-stat-item:last-child { border-bottom: none; }
+            .why-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 575.98px) {
+            .hero-cta-group { flex-direction: column; align-items: flex-start; }
+            .btn-primary-green, .btn-outline-white, .btn-wa { width: 100%; justify-content: center; }
+        }
     </style>
 </head>
-<body class="bg-white text-gray-800 antialiased">
+<body>
 
-    <!-- 1. Sticky Navigation -->
-    <nav class="fixed w-full bg-white shadow-md z-50 top-0">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
-                    <!-- تم دمج اللوجو الخاص بك هنا وجعله دائرياً ليتناسب مع التصميم -->
-                    <img src="https://i.postimg.cc/zXsVy8SH/301132190-392920866347479-1504775251407766520-n.jpg" alt="شعار أعلاف تايجر" class="h-12 w-12 object-cover rounded-full shadow-sm border border-gray-100">
-                    <span class="font-bold text-2xl text-tiger-dark tracking-wide">أعلاف تايجر</span>
+<!-- =============================================
+     FLOATING WHATSAPP BUTTON
+============================================= -->
+<a href="https://wa.me/201004564892" target="_blank" class="wa-float-btn" aria-label="تواصل عبر واتساب">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+
+<!-- =============================================
+     MOBILE MENU DRAWER
+============================================= -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenu" aria-label="إغلاق القائمة">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+    <a href="#home"     onclick="closeMobileMenu()">الرئيسية</a>
+    <a href="#about"    onclick="closeMobileMenu()">عن المصنع</a>
+    <a href="#products" onclick="closeMobileMenu()">منتجاتنا</a>
+    <a href="#why"      onclick="closeMobileMenu()">لماذا تايجر؟</a>
+    <a href="#contact"  onclick="closeMobileMenu()">اتصل بنا</a>
+    <a href="https://wa.me/201004564892" class="btn-wa mt-2" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> طلب تسعيرة
+    </a>
+</div>
+
+
+<!-- =============================================
+     NAVBAR
+============================================= -->
+<nav id="mainNav" aria-label="القائمة الرئيسية">
+    <div class="nav-inner">
+        <!-- Brand Logo -->
+        <a href="#home" class="nav-brand">
+            <img src="https://i.postimg.cc/zXsVy8SH/301132190-392920866347479-1504775251407766520-n.jpg" alt="شعار أعلاف تايجر">
+            <span class="nav-brand-text">أعلاف تايجر</span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <ul class="nav-links">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#about">عن المصنع</a></li>
+            <li><a href="#products">منتجاتنا</a></li>
+            <li><a href="#why">لماذا تايجر؟</a></li>
+            <li><a href="#contact">اتصل بنا</a></li>
+        </ul>
+
+        <!-- CTA -->
+        <a href="https://wa.me/201004564892" target="_blank" class="btn-nav">
+            <i class="fa-brands fa-whatsapp"></i>
+            طلب تسعيرة
+        </a>
+
+        <!-- Hamburger -->
+        <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+
+<!-- =============================================
+     HERO SECTION
+============================================= -->
+<section id="home">
+    <div id="hero">
+        <div class="hero-overlay"></div>
+
+        <div class="container" style="position:relative;z-index:2;padding-top:80px;">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-certificate"></i>
+                    أعلاف متخصصة للدواجن — منذ 2012
                 </div>
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center gap-8 font-semibold text-gray-600">
-                    <a href="#home" class="hover:text-tiger-orange transition">الرئيسية</a>
-                    <a href="#products" class="hover:text-tiger-orange transition">منتجاتنا</a>
-                    <a href="#about" class="hover:text-tiger-orange transition">عن المصنع</a>
-                    <a href="#contact" class="hover:text-tiger-orange transition">اتصل بنا</a>
-                </div>
-                <!-- CTA Button -->
-                <div class="hidden md:flex">
-                    <a href="https://wa.me/201004564892" target="_blank" class="bg-whatsapp text-white px-6 py-2 rounded-full font-bold hover:bg-green-600 transition flex items-center gap-2 shadow-lg">
-                        <i class="fa-brands fa-whatsapp text-xl"></i>
-                        طلب تسعيرة
+                <h1 class="hero-title">
+                    أعلى معدل تحويل غذائي<br>
+                    <span>لمزرعتك في مصر</span>
+                </h1>
+                <p class="hero-sub">
+                    تركيبة علمية مدعمة بالإنزيمات والفيتامينات والبروبيوتيك لضمان نمو سريع، مناعة قوية، وأقل نافق ممكن لدواجنك.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="https://wa.me/201004564892" target="_blank" class="btn-wa">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        اطلب الآن عبر واتساب
+                    </a>
+                    <a href="#products" class="btn-outline-white">
+                        <i class="fa-solid fa-layer-group"></i>
+                        تصفح المنتجات
                     </a>
                 </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button class="text-gray-600 hover:text-tiger-orange focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
+            </div>
+        </div>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-6 col-md-3">
+                        <div class="hero-stat-item">
+                            <span class="hero-stat-num">+12</span>
+                            <span class="hero-stat-label">سنة خبرة في السوق</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="hero-stat-item">
+                            <span class="hero-stat-num">+500</span>
+                            <span class="hero-stat-label">مزرعة شريكة</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="hero-stat-item">
+                            <span class="hero-stat-num">3</span>
+                            <span class="hero-stat-label">منتجات متخصصة</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="hero-stat-item">
+                            <span class="hero-stat-num">100%</span>
+                            <span class="hero-stat-label">فحص معملي موثّق</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- 2. Hero Section -->
-    <section id="home" class="relative pt-20 pb-32 lg:pt-32 lg:pb-48 bg-cover bg-center" style="background-image: linear-gradient(rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.8)), url('https://images.unsplash.com/photo-1598287515937-25257e930113?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white mt-12">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                أعلى معدل تحويل غذائي <br> <span class="text-tiger-orange">لمزرعتك في مصر</span>
-            </h1>
-            <p class="text-lg md:text-2xl mb-10 max-w-3xl mx-auto text-gray-200">
-                أعلاف تايجر توفر لك تركيبة متوازنة مدعمة بالإنزيمات والفيتامينات لضمان نمو سريع ومناعة قوية لدواجنك. جودة يمكنك الاعتماد عليها.
+
+<!-- =============================================
+     FEATURES BAND
+============================================= -->
+<section id="features-band">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div>
+                        <h5>أعلى تحويل غذائي</h5>
+                        <p>تركيبة علمية دقيقة لأقصى استفادة من كل جرام علف.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                    <div>
+                        <h5>مناعة أقوى للطائر</h5>
+                        <p>فيتامينات وبروبيوتيك تحمي القطيع وتقلل النافق.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div>
+                        <h5>مفحوص معملياً</h5>
+                        <p>خلوّ موثّق من السموم الفطرية في جميع الدفعات.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div>
+                        <h5>توصيل لكل مصر</h5>
+                        <p>أسطول سيارات مبردة يوصل طلباتك في الموعد.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- =============================================
+     ABOUT SECTION
+============================================= -->
+<section id="about">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <!-- Image Side -->
+            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="900">
+                <div class="about-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80"
+                         alt="مصنع أعلاف تايجر">
+                    <div class="about-img-badge">
+                        <strong>+12</strong>
+                        <span>عاماً من التميز في تصنيع الأعلاف</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Side -->
+            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="900">
+                <span class="section-label">عن المصنع</span>
+                <h2 class="section-title">تكنولوجيا تصنيع عالمية<br>على أرض مصرية</h2>
+                <div class="section-line start"></div>
+                <p class="mb-5">
+                    في مصانع <strong>أعلاف تايجر</strong> بالمنطقة الصناعية في جمصة – الدقهلية، نستخدم أحدث خطوط الإنتاج الآلية لضمان تجانس حبة العلف وتعقيمها بالبخار العالي لقضاء على الميكروبات (Pelleting Process). كل دفعة إنتاج تمر بفحص دقيق قبل الشحن.
+                </p>
+
+                <div class="about-check">
+                    <div class="about-check-icon"><i class="fa-solid fa-wheat-awn"></i></div>
+                    <div>
+                        <h6>أفضل الخامات محلياً وعالمياً</h6>
+                        <p>اختيار مدروس لأجود مصادر الذرة والصويا لضمان القيمة الغذائية المثلى.</p>
+                    </div>
+                </div>
+
+                <div class="about-check">
+                    <div class="about-check-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                    <div>
+                        <h6>حماية كامل من السموم الفطرية</h6>
+                        <p>إضافة مضادات سموم عالية الجودة للحفاظ على صحة كبد الطائر وأدائه الإنتاجي.</p>
+                    </div>
+                </div>
+
+                <div class="about-check">
+                    <div class="about-check-icon"><i class="fa-solid fa-truck"></i></div>
+                    <div>
+                        <h6>توصيل موثوق لأي مكان</h6>
+                        <p>أسطول سيارات مجهز يضمن وصول طلبيتك في الوقت المحدد وبالكميات الصحيحة.</p>
+                    </div>
+                </div>
+
+                <div class="mt-5 d-flex gap-3 flex-wrap">
+                    <a href="https://wa.me/201004564892" target="_blank" class="btn-primary-green">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        تواصل مع فريقنا
+                    </a>
+                    <a href="#products" class="btn-outline-green">
+                        مشاهدة المنتجات
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =============================================
+     PRODUCTS / SERVICES
+============================================= -->
+<section id="products">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">خط الإنتاج</span>
+            <h2 class="section-title">دورة تسمين كاملة<br>من اليوم الأول حتى البيع</h2>
+            <div class="section-line"></div>
+            <p class="mx-auto" style="max-width:540px;">
+                ثلاثة منتجات مصممة علمياً تغطي كل مراحل حياة الطائر لضمان أفضل أوزان وأقل تكلفة.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="https://wa.me/201004564892" target="_blank" class="bg-whatsapp text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i>
-                    اطلب الكمية الآن عبر واتساب
-                </a>
-                <a href="#products" class="bg-white text-tiger-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-lg">
-                    تصفح منتجاتنا
-                </a>
-            </div>
         </div>
-    </section>
 
-    <!-- 3. Quality/Features Section -->
-    <section class="py-16 bg-tiger-light -mt-16 relative z-10 mx-4 sm:mx-8 rounded-2xl shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="p-6">
-                    <div class="w-16 h-16 bg-tiger-orange text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-lg">
-                        <i class="fa-solid fa-chart-line"></i>
+        <div class="row g-4">
+
+            <!-- Product 1: Badi -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="product-card h-100">
+                    <div class="product-card-img">
+                        <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=600&q=80"
+                             alt="علف بادي سوبر">
+                        <div class="product-card-img-overlay"></div>
+                        <div class="product-protein">
+                            23%
+                            <span>بروتين خام</span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">أعلى معدل تحويل</h3>
-                    <p class="text-gray-600">تركيبة علمية دقيقة تضمن لك أقصى استفادة من كل جرام علف لتحقيق أوزان مثالية.</p>
-                </div>
-                <div class="p-6">
-                    <div class="w-16 h-16 bg-tiger-orange text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-lg">
-                        <i class="fa-solid fa-shield-cat"></i>
+                    <div class="product-card-body">
+                        <h3>بادي سوبر</h3>
+                        <div class="product-age-badge">
+                            <i class="fa-solid fa-clock"></i>
+                            يوم 1 — يوم 14
+                        </div>
+                        <ul class="product-features">
+                            <li><i class="fa-solid fa-circle-check"></i> بروتين خام لا يقل عن 23%</li>
+                            <li><i class="fa-solid fa-circle-check"></i> طاقة ممتازة للنمو المبكر السريع</li>
+                            <li><i class="fa-solid fa-circle-check"></i> أحماض أمينية أساسية للريش والعضل</li>
+                            <li><i class="fa-solid fa-circle-check"></i> دعم مناعي مكثف في أول أسبوعين</li>
+                        </ul>
+                        <a href="https://wa.me/201004564892?text=أريد الاستفسار عن سعر علف بادي سوبر 23%"
+                           target="_blank" class="btn-outline-green w-100 justify-content-center">
+                            استفسر عن السعر
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">مناعة أقوى</h3>
-                    <p class="text-gray-600">مدعم بالفيتامينات والمعادن والبروبيوتيك لحماية قطيعك من الأمراض وتقليل النافق.</p>
-                </div>
-                <div class="p-6">
-                    <div class="w-16 h-16 bg-tiger-orange text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-lg">
-                        <i class="fa-solid fa-flask"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">مفحوص معملياً</h3>
-                    <p class="text-gray-600">تخضع جميع الخامات والمنتجات النهائية لفحوصات معملية صارمة لضمان خلوها من السموم الفطرية.</p>
                 </div>
             </div>
+
+            <!-- Product 2: Nami (Featured) -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="product-card h-100">
+                    <div class="product-card-img">
+                        <div class="product-badge-top">الأكثر مبيعاً</div>
+                        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=600&q=80"
+                             alt="علف نامي متوازن">
+                        <div class="product-card-img-overlay"></div>
+                        <div class="product-protein">
+                            21%
+                            <span>بروتين خام</span>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>نامي متوازن</h3>
+                        <div class="product-age-badge">
+                            <i class="fa-solid fa-clock"></i>
+                            يوم 15 — يوم 28
+                        </div>
+                        <ul class="product-features">
+                            <li><i class="fa-solid fa-circle-check"></i> بروتين خام لا يقل عن 21%</li>
+                            <li><i class="fa-solid fa-circle-check"></i> بناء هيكل عظمي قوي ومتين</li>
+                            <li><i class="fa-solid fa-circle-check"></i> دعم مناعي متواصل ضد الأمراض</li>
+                            <li><i class="fa-solid fa-circle-check"></i> توازن دقيق بين النمو والتكلفة</li>
+                        </ul>
+                        <a href="https://wa.me/201004564892?text=أريد الاستفسار عن سعر علف نامي متوازن 21%"
+                           target="_blank" class="btn-primary-green w-100 justify-content-center">
+                            استفسر عن السعر
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3: Nahi -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-card h-100">
+                    <div class="product-card-img">
+                        <img src="https://images.unsplash.com/photo-1548550023-2bf3d482cc2b?auto=format&fit=crop&w=600&q=80"
+                             alt="علف ناهي ممتاز">
+                        <div class="product-card-img-overlay"></div>
+                        <div class="product-protein">
+                            19%
+                            <span>بروتين خام</span>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>ناهي ممتاز</h3>
+                        <div class="product-age-badge">
+                            <i class="fa-solid fa-clock"></i>
+                            يوم 29 — حتى البيع
+                        </div>
+                        <ul class="product-features">
+                            <li><i class="fa-solid fa-circle-check"></i> بروتين خام لا يقل عن 19%</li>
+                            <li><i class="fa-solid fa-circle-check"></i> زيادة صافي اللحم قبل البيع</li>
+                            <li><i class="fa-solid fa-circle-check"></i> تحسين لون وجودة الكرادي</li>
+                            <li><i class="fa-solid fa-circle-check"></i> اقتصادي ويعظّم هامش الربح</li>
+                        </ul>
+                        <a href="https://wa.me/201004564892?text=أريد الاستفسار عن سعر علف ناهي ممتاز 19%"
+                           target="_blank" class="btn-outline-green w-100 justify-content-center">
+                            استفسر عن السعر
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 4. Product Categories Section -->
-    <section id="products" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-tiger-dark mb-4">خط إنتاج أعلاف التسمين</h2>
-                <div class="w-24 h-1 bg-tiger-orange mx-auto rounded"></div>
-                <p class="mt-4 text-gray-600 text-lg">نقدم دورة تسمين كاملة تناسب جميع الأعمار لتحقيق أفضل النتائج</p>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Product 1 -->
-                <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
-                    <div class="bg-gray-800 h-48 flex items-center justify-center text-white relative">
-                        <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="علف بادي" class="w-full h-full object-cover opacity-60">
-                        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                        <h3 class="absolute text-3xl font-bold">بادي سوبر 23%</h3>
-                    </div>
-                    <div class="p-8">
-                        <ul class="mb-6 space-y-3 text-gray-600">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tiger-orange"></i> بروتين خام لا يقل عن 23%</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tiger-orange"></i> طاقة ممتازة للنمو المبكر</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tiger-orange"></i> يستخدم من عمر يوم حتى 14 يوم</li>
-                        </ul>
-                        <a href="https://wa.me/201004564892?text=أريد الاستفسار عن سعر علف بادي سوبر 23%" target="_blank" class="block w-full text-center border-2 border-tiger-orange text-tiger-orange font-bold py-3 rounded-xl hover:bg-tiger-orange hover:text-white transition">استفسر عن السعر</a>
-                    </div>
-                </div>
+<!-- =============================================
+     WHY CHOOSE US
+============================================= -->
+<section id="why">
+    <div class="container">
+        <div class="row align-items-center g-5">
 
-                <!-- Product 2 -->
-                <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 relative">
-                    <div class="absolute top-0 right-0 bg-red-600 text-white font-bold px-4 py-1 rounded-bl-lg z-10">الأكثر مبيعاً</div>
-                    <div class="bg-gray-800 h-48 flex items-center justify-center text-white relative">
-                        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="علف نامي" class="w-full h-full object-cover opacity-60">
-                        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                        <h3 class="absolute text-3xl font-bold">نامي متوازن 21%</h3>
-                    </div>
-                    <div class="p-8">
-                        <ul class="mb-6 space-y-3 text-gray-600">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tiger-orange"></i> بروتين خام لا يقل عن 21%</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tiger-orange"></i> بناء هيكل عظمي قوي</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tiger-orange"></i> يستخدم من 15 حتى 28 يوم</li>
-                        </ul>
-                        <a href="https://wa.me/201004564892?text=أريد الاستفسار عن سعر علف نامي 21%" target="_blank" class="block w-full text-center bg-tiger-orange text-white font-bold py-3 rounded-xl hover:bg-orange-600 transition shadow-md">استفسر عن السعر</a>
-                    </div>
-                </div>
+            <!-- Why Cards -->
+            <div class="col-lg-7" data-aos="fade-right" data-aos-duration="900">
+                <span class="section-label">مزايانا التنافسية</span>
+                <h2 class="section-title mb-2">لماذا يختار المربون<br>أعلاف تايجر؟</h2>
+                <div class="section-line start mb-5"></div>
 
-                <!-- Product 3 -->
-                <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2">
-                    <div class="bg-gray-800 h-48 flex items-center justify-center text-white relative">
-                        <img src="https://images.unsplash.com/photo-1548550023-2bf3d482cc2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="علف ناهي" class="w-full h-full object-cover opacity-60">
-                        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                        <h3 class="absolute text-3xl font-bold">ناهي ممتاز 19%</h3>
+                <div class="why-grid">
+                    <div class="why-card" data-aos="zoom-in" data-aos-delay="0">
+                        <div class="why-card-icon"><i class="fa-solid fa-microscope"></i></div>
+                        <h5>تركيبة علمية موثّقة</h5>
+                        <p>نعتمد على أبحاث التغذية الحديثة في تصميم كل منتج.</p>
                     </div>
-                    <div class="p-8">
-                        <ul class="mb-6 space-y-3 text-gray-600">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tiger-orange"></i> بروتين خام لا يقل عن 19%</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tiger-orange"></i> زيادة صافي اللحم قبل البيع</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tiger-orange"></i> يستخدم من 29 يوم حتى البيع</li>
-                        </ul>
-                        <a href="https://wa.me/201004564892?text=أريد الاستفسار عن سعر علف ناهي 19%" target="_blank" class="block w-full text-center border-2 border-tiger-orange text-tiger-orange font-bold py-3 rounded-xl hover:bg-tiger-orange hover:text-white transition">استفسر عن السعر</a>
+                    <div class="why-card" data-aos="zoom-in" data-aos-delay="80">
+                        <div class="why-card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <h5>أسعار تنافسية بالجملة</h5>
+                        <p>أفضل جودة بأسعار تناسب صغار وكبار المربين.</p>
+                    </div>
+                    <div class="why-card" data-aos="zoom-in" data-aos-delay="160">
+                        <div class="why-card-icon"><i class="fa-solid fa-headset"></i></div>
+                        <h5>دعم فني متخصص</h5>
+                        <p>مهندسون متخصصون يتابعون دورتك من البداية للنهاية.</p>
+                    </div>
+                    <div class="why-card" data-aos="zoom-in" data-aos-delay="240">
+                        <div class="why-card-icon"><i class="fa-solid fa-industry"></i></div>
+                        <h5>إنتاج آلي متطور</h5>
+                        <p>خطوط إنتاج أوروبية تضمن تجانس وجودة كل حبة علف.</p>
                     </div>
                 </div>
             </div>
+
+            <!-- Right Image -->
+            <div class="col-lg-5" data-aos="fade-left" data-aos-duration="900">
+                <div class="why-right-image">
+                    <img src="https://images.unsplash.com/photo-1548550023-2bf3d482cc2b?auto=format&fit=crop&w=700&q=80"
+                         alt="جودة أعلاف تايجر">
+                    <div class="why-right-image-overlay">
+                        <div class="why-quote">
+                            "العلف الصح هو أهم قرار تتخذه في دورتك — اختر بعلم."
+                            <small>— فريق أعلاف تايجر الفني</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 5. Factory/Production (About Us) -->
-    <section id="about" class="py-20 bg-tiger-light">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="lg:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="مصنع أعلاف تايجر" class="rounded-2xl shadow-xl w-full">
-                </div>
-                <div class="lg:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-tiger-dark mb-6">تكنولوجيا تصنيع عالمية على أرض مصرية</h2>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
-                        في مصانع <strong>أعلاف تايجر</strong>، نستخدم أحدث خطوط الإنتاج الآلية لضمان تجانس حبة العلف وتعقيمها بالبخار العالي لقتل الميكروبات (Pelleting Process).
+
+<!-- =============================================
+     TESTIMONIALS
+============================================= -->
+<section id="testimonials">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-label">شركاء النجاح</span>
+            <h2 class="section-title">ماذا يقول المربون<br>عن أعلاف تايجر؟</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="review-card h-100">
+                    <div class="review-quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+                    <p class="review-text">
+                        "جربت شركات كتير، بس التحويل مع تايجر فرق معايا جداً في الدورة الأخيرة. الأوزان طلعت بدري والنافق قل بشكل ملحوظ."
                     </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-whatsapp mt-1"></i>
-                            <span class="text-gray-700 font-semibold">اختيار أفضل خامات الذرة والصويا محلياً وعالمياً.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-whatsapp mt-1"></i>
-                            <span class="text-gray-700 font-semibold">إضافة مضادات سموم فطرية عالية الجودة للحفاظ على كبد الطائر.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-whatsapp mt-1"></i>
-                            <span class="text-gray-700 font-semibold">أسطول سيارات مجهز لتوصيل الطلبيات لأي مكان في مصر بأسرع وقت.</span>
-                        </li>
-                    </ul>
+                    <div class="review-author">
+                        <div class="review-avatar">م</div>
+                        <div>
+                            <p class="review-name">الحاج محمد السيد</p>
+                            <p class="review-role">صاحب مزارع — الشرقية</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- 6. Testimonials (Social Proof) -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-tiger-dark mb-4">شركاء النجاح</h2>
-                <div class="w-24 h-1 bg-tiger-orange mx-auto rounded"></div>
-                <p class="mt-4 text-gray-600 text-lg">آراء بعض أصحاب المزارع والموزعين الذين يثقون في أعلاف تايجر</p>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-card h-100">
+                    <div class="review-quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+                    <p class="review-text">
+                        "التعامل مع الإدارة محترم جداً، والطلبيات بتوصل في ميعادها. المربين بيطلبوا العلف بالاسم لأن نتيجته بتبان معاهم على طول."
+                    </p>
+                    <div class="review-author">
+                        <div class="review-avatar">أ</div>
+                        <div>
+                            <p class="review-name">أحمد عبد العزيز</p>
+                            <p class="review-role">موزع معتمد — الدقهلية</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Review 1 -->
-                <div class="bg-tiger-light p-8 rounded-2xl relative">
-                    <i class="fa-solid fa-quote-right text-4xl text-gray-300 absolute top-4 right-4"></i>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-gray-600">م</div>
-                        <div>
-                            <h4 class="font-bold text-lg">الحاج/ محمد السيد</h4>
-                            <p class="text-sm text-gray-500">صاحب مزارع بالشرقية</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">"بصراحة جربت شركات كتير، بس التحويل مع تايجر فرق معايا جداً في الدورة الأخيرة، الأوزان طلعت بدري والنافق قل بشكل ملحوظ."</p>
-                    <div class="mt-4 text-tiger-orange">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                </div>
 
-                <!-- Review 2 -->
-                <div class="bg-tiger-light p-8 rounded-2xl relative">
-                    <i class="fa-solid fa-quote-right text-4xl text-gray-300 absolute top-4 right-4"></i>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-gray-600">أ</div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="review-card h-100">
+                    <div class="review-quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+                    <p class="review-text">
+                        "كمهندس بيطري ومشرف على مزارع، بنصح دايماً بأعلاف تايجر لأن تركيبتهم العلمية مضبوطة والسموم الفطرية فيها معدومة تقريباً."
+                    </p>
+                    <div class="review-author">
+                        <div class="review-avatar">م</div>
                         <div>
-                            <h4 class="font-bold text-lg">أحمد عبدالعزيز</h4>
-                            <p class="text-sm text-gray-500">موزع معتمد - الدقهلية</p>
+                            <p class="review-name">م. محمود حسن</p>
+                            <p class="review-role">مهندس بيطري — القاهرة</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
                         </div>
-                    </div>
-                    <p class="text-gray-700 italic">"التعامل مع الإدارة محترم جداً، والطلبيات بتوصل في ميعادها. والمربين بيطلبوا العلف بالاسم لأن نتيجته بتبان معاهم على طول."</p>
-                    <div class="mt-4 text-tiger-orange">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                </div>
-
-                <!-- Review 3 -->
-                <div class="bg-tiger-light p-8 rounded-2xl relative hidden md:block">
-                    <i class="fa-solid fa-quote-right text-4xl text-gray-300 absolute top-4 right-4"></i>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center text-xl font-bold text-gray-600">م</div>
-                        <div>
-                            <h4 class="font-bold text-lg">م. محمود حسن</h4>
-                            <p class="text-sm text-gray-500">مهندس زراعي</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">"كطبيب بيطري ومشرف على مزارع، بنصح دايماً بأعلاف تايجر لأن تركيبتهم العلمية مضبوطة والسموم الفطرية فيها معدومة تقريباً."</p>
-                    <div class="mt-4 text-tiger-orange">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 8. Instagram Feed Placeholder -->
-    <section class="py-10 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-2xl font-bold mb-6">تابعنا على إنستجرام <a href="https://www.instagram.com/tiger.feed?fbclid=IwY2xjawQ5qCBleHRuA2FlbQIxMABicmlkETA5eDhtc0I3c2JYZHJ6ZTRUc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHv36Se1SNuXpoj71l_iZHakkxi3UgarPaSJPlziGMz32HHExowByu3AsFrbK_aem_rWMPV8OV-K-afZ9Hvt0DxA" target="_blank" class="text-tiger-orange">@TigerFeedEG</a></h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <img src="https://i.postimg.cc/zB7Xk22s/599945805_1165856185720606_3929360493693248953_n.jpg" class="rounded-lg object-cover w-full h-48 hover:opacity-75 transition cursor-pointer">
-                <img src="https://i.postimg.cc/7PBZGc2S/607585582_1180303027609255_5393324413047917959_n.jpg" class="rounded-lg object-cover w-full h-48 hover:opacity-75 transition cursor-pointer">
-                <img src="https://i.postimg.cc/7hQHFGk9/652454275_1235865125386378_2248999397733282573_n.jpg" class="rounded-lg object-cover w-full h-48 hover:opacity-75 transition cursor-pointer">
-                <img src="https://i.postimg.cc/7hQHFGkH/657246888_1241643304808560_5938926639585751260_n.jpg" class="rounded-lg object-cover w-full h-48 hover:opacity-75 transition cursor-pointer">
+
+<!-- =============================================
+     INSTAGRAM GALLERY
+============================================= -->
+<section id="gallery">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h3 style="color:white;font-weight:800;font-size:1.6rem;">
+                تابعنا على إنستجرام
+                <a href="https://www.instagram.com/tiger.feed" target="_blank"
+                   style="color:var(--gold-light);text-decoration:none;"> @tiger.feed</a>
+            </h3>
+            <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;margin-top:6px;">
+                آخر أخبار المصنع وتقارير النتائج من مزارع عملائنا
+            </p>
+        </div>
+
+        <div class="gallery-grid" data-aos="fade-up" data-aos-delay="100">
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/zB7Xk22s/599945805_1165856185720606_3929360493693248953_n.jpg" alt="صورة من إنستجرام">
+                <div class="gallery-item-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/7PBZGc2S/607585582_1180303027609255_5393324413047917959_n.jpg" alt="صورة من إنستجرام">
+                <div class="gallery-item-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/7hQHFGk9/652454275_1235865125386378_2248999397733282573_n.jpg" alt="صورة من إنستجرام">
+                <div class="gallery-item-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/7hQHFGkH/657246888_1241643304808560_5938926639585751260_n.jpg" alt="صورة من إنستجرام">
+                <div class="gallery-item-overlay"><i class="fa-brands fa-instagram"></i></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- 9. Strong WhatsApp CTA Banner -->
-    <section class="bg-tiger-dark py-16 mt-10">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">مستعد لزيادة أرباح مزرعتك؟</h2>
-            <p class="text-xl text-gray-300 mb-10">فريق المبيعات والدعم الفني جاهز للرد على استفساراتك وتوفير الكميات التي تحتاجها بأفضل أسعار السوق.</p>
-            <a href="https://wa.me/201004564892" target="_blank" class="inline-flex items-center gap-3 bg-whatsapp text-white px-10 py-5 rounded-full font-bold text-2xl hover:bg-green-600 transition shadow-[0_0_20px_rgba(37,211,102,0.4)] transform hover:scale-105">
-                <i class="fa-brands fa-whatsapp text-3xl"></i>
+
+<!-- =============================================
+     CTA BANNER
+============================================= -->
+<section id="cta">
+    <div class="container" data-aos="fade-up">
+        <p class="section-label" style="color:var(--gold-light);background:rgba(212,168,67,0.15);">
+            ابدأ الآن
+        </p>
+        <h2 class="cta-title">
+            مستعد لزيادة أرباح<br>
+            <span>مزرعتك هذه الدورة؟</span>
+        </h2>
+        <p class="cta-sub">
+            فريق المبيعات والدعم الفني جاهز للرد على استفساراتك وتوفير الكميات التي تحتاجها بأفضل أسعار السوق.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="https://wa.me/201004564892" target="_blank" class="btn-wa" style="font-size:1.1rem;padding:16px 36px;">
+                <i class="fa-brands fa-whatsapp fa-lg"></i>
                 تواصل معنا الآن عبر واتساب
             </a>
-            <p class="mt-6 text-gray-400">نرد على رسائلك خلال دقائق!</p>
+            <a href="tel:+201004564892" class="btn-outline-white" style="font-size:1.1rem;padding:16px 36px;">
+                <i class="fa-solid fa-phone"></i>
+                اتصل مباشرة
+            </a>
         </div>
-    </section>
+        <p class="cta-note">
+            <i class="fa-solid fa-circle-check" style="color:var(--gold-light);margin-left:6px;"></i>
+            نرد على رسائلك خلال دقائق — من السبت للخميس
+        </p>
+    </div>
+</section>
 
-    <!-- 10. Footer & Google Maps -->
-    <footer id="contact" class="bg-gray-900 text-white pt-16 pb-8 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <!-- About -->
-                <div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <!-- تم إضافة اللوجو هنا أيضاً مع إطار دائري باللون البرتقالي للعلامة التجارية -->
-                        <img src="https://i.postimg.cc/zXsVy8SH/301132190-392920866347479-1504775251407766520-n.jpg" alt="شعار أعلاف تايجر" class="h-14 w-14 object-cover rounded-full border-2 border-tiger-orange p-0.5 bg-white">
-                        <span class="font-bold text-2xl tracking-wide">أعلاف تايجر</span>
-                    </div>
-                    <p class="text-gray-400 leading-relaxed mb-6">
-                        الشركة الرائدة في صناعة أعلاف الدواجن في مصر. نلتزم بتقديم أعلى معايير الجودة لضمان نجاح المربين.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="https://www.facebook.com/profile.php?id=100068887067146" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-tiger-orange transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/tiger.feed?fbclid=IwY2xjawQ5qCBleHRuA2FlbQIxMABicmlkETA5eDhtc0I3c2JYZHJ6ZTRUc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHv36Se1SNuXpoj71l_iZHakkxi3UgarPaSJPlziGMz32HHExowByu3AsFrbK_aem_rWMPV8OV-K-afZ9Hvt0DxA" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-tiger-orange transition"><i class="fa-brands fa-instagram"></i></a>
+
+<!-- =============================================
+     CONTACT & FOOTER
+============================================= -->
+<footer id="contact">
+    <div class="container">
+        <div class="row g-5 mb-5">
+
+            <!-- Brand Col -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <img src="https://i.postimg.cc/zXsVy8SH/301132190-392920866347479-1504775251407766520-n.jpg"
+                         alt="شعار تايجر"
+                         style="width:54px;height:54px;border-radius:50%;border:2px solid var(--green-mid);object-fit:cover;">
+                    <span style="font-size:1.4rem;font-weight:800;color:white;">أعلاف تايجر</span>
+                </div>
+                <p style="color:rgba(255,255,255,0.55);font-size:0.92rem;line-height:1.8;margin-bottom:24px;">
+                    الشركة الرائدة في صناعة أعلاف الدواجن في مصر. نلتزم بتقديم أعلى معايير الجودة لضمان نجاح كل مربٍّ يثق بنا.
+                </p>
+                <div class="d-flex gap-1">
+                    <a href="https://www.facebook.com/profile.php?id=100068887067146" target="_blank" class="social-link">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/tiger.feed" target="_blank" class="social-link">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/201004564892" target="_blank" class="social-link">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6 col-6" data-aos="fade-up" data-aos-delay="80">
+                <h6 style="color:white;font-weight:700;margin-bottom:20px;font-size:1rem;">
+                    روابط سريعة
+                </h6>
+                <a href="#home"     class="footer-quick-link">الرئيسية</a>
+                <a href="#about"    class="footer-quick-link">عن المصنع</a>
+                <a href="#products" class="footer-quick-link">منتجاتنا</a>
+                <a href="#why"      class="footer-quick-link">لماذا تايجر؟</a>
+                <a href="#contact"  class="footer-quick-link">اتصل بنا</a>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="160">
+                <h6 style="color:white;font-weight:700;margin-bottom:20px;font-size:1rem;">
+                    معلومات الاتصال
+                </h6>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <div class="contact-info-label">العنوان</div>
+                        <div class="contact-info-val">المنطقة الصناعية — جمصة، الدقهلية</div>
                     </div>
                 </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-xl font-bold mb-6 border-b border-gray-700 pb-2">معلومات الاتصال</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-location-dot text-tiger-orange mt-1"></i>
-                            <span>المنطقه الصناعيه-جمصة-الدقهلية-جمهورية مصر العربية</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-phone text-tiger-orange mt-1"></i>
-                            <span dir="ltr">+20 100 456 4892</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-envelope text-tiger-orange mt-1"></i>
-                            <span>tigerfeed21@gmail.com</span>
-                        </li>
-                    </ul>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <div class="contact-info-label">رقم الهاتف</div>
+                        <div class="contact-info-val" dir="ltr">+20 100 456 4892</div>
+                    </div>
                 </div>
-
-                <!-- Map Placeholder -->
-                <div>
-                    <h4 class="text-xl font-bold mb-6 border-b border-gray-700 pb-2">موقع المصنع</h4>
-                    <div class="w-full h-48 bg-gray-800 rounded-lg overflow-hidden relative">
-                        <!-- خريطة جمصة -->
-                        <iframe src="https://maps.google.com/maps?q=المنطقة+الصناعية+جمصة+الدقهلية&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <div class="contact-info-label">البريد الإلكتروني</div>
+                        <div class="contact-info-val">tigerfeed21@gmail.com</div>
                     </div>
                 </div>
             </div>
 
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2024 أعلاف تايجر. جميع الحقوق محفوظة.</p>
+            <!-- Google Map -->
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="240">
+                <h6 style="color:white;font-weight:700;margin-bottom:20px;font-size:1rem;">
+                    موقع المصنع
+                </h6>
+                <div class="footer-map">
+                    <iframe
+                        src="https://maps.google.com/maps?q=المنطقة+الصناعية+جمصة+الدقهلية&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="200"
+                        style="border:0;display:block;"
+                        allowfullscreen="" loading="lazy"
+                        title="موقع مصنع أعلاف تايجر">
+                    </iframe>
+                </div>
             </div>
+
         </div>
-    </footer>
 
-    <!-- Floating WhatsApp Button (CRITICAL CONVERSION TOOL) -->
-    <a href="https://wa.me/201004564892" target="_blank" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-whatsapp text-white w-16 h-16 rounded-full flex items-center justify-center text-4xl shadow-[0_4px_15px_rgba(0,0,0,0.3)] z-50 hover:bg-green-600 transition wa-float" aria-label="Chat on WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>
+                &copy; 2024 أعلاف تايجر — جميع الحقوق محفوظة.
+                صُنع بـ <span style="color:var(--gold-light);">&#9829;</span> في مصر.
+            </p>
+        </div>
+    </div>
+</footer>
 
-    <!-- Mobile Menu Script Toggle (Basic implementation) -->
-    <script>
-        const mobileMenuBtn = document.querySelector('nav button');
-        // Add functionality if you expand to a full mobile menu sidebar
-        mobileMenuBtn.addEventListener('click', () => {
-            alert('أضف قائمة الجوال هنا أو استخدم التمرير للمقاطع!'); 
+
+<!-- =============================================
+     SCRIPTS
+============================================= -->
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- AOS Animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+    // --- Initialize AOS ---
+    AOS.init({
+        duration: 750,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 60
+    });
+
+    // --- Navbar scroll behavior ---
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // --- Mobile menu ---
+    const navToggle  = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu  = document.getElementById('closeMenu');
+
+    navToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+
+    closeMenu.addEventListener('click', closeMobileMenu);
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    // Close mobile menu on outside click
+    mobileMenu.addEventListener('click', function(e) {
+        if (e.target === mobileMenu) closeMobileMenu();
+    });
+
+    // --- Active nav link highlight on scroll ---
+    const sections = document.querySelectorAll('section[id], footer[id]');
+    const navLinks  = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.style.color = '';
+                    if (link.getAttribute('href') === '#' + entry.target.id) {
+                        link.style.color = 'var(--green-light)';
+                    }
+                });
+            }
         });
-    </script>
+    }, { threshold: 0.35 });
+
+    sections.forEach(s => observer.observe(s));
+</script>
+
 </body>
 </html>
